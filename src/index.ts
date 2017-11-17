@@ -42,7 +42,10 @@ export class Graylog extends Stream.Transform {
                     delete data.query;
                 }
             }
-        })
+        });
+
+        // delete cached adapter so that it'll be recreated with our new config.
+        (<any>log).adapter = null;
 
         log.setConfig(config);
 
